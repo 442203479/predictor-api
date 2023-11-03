@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Explore">
+
+  <Button
+      android:id="@+id/addbtn3"
+      android:layout_width="98dp"
+      android:layout_height="69dp"
+      android:layout_marginBottom="32dp"
+      android:contentDescription="Add A New Post"
+      app:icon="@android:drawable/ic_menu_add"
+      app:iconGravity="textStart"
+      app:iconPadding="0dp"
+      app:iconSize="50dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/expbtn3"
+      android:layout_width="98dp"
+      android:layout_height="69dp"
+      android:layout_marginBottom="32dp"
+      android:contentDescription="Explore Other's Posts"
+      android:isScrollContainer="false"
+      android:pointerIcon="none"
+      app:icon="@android:drawable/ic_menu_compass"
+      app:iconGravity="textStart"
+      app:iconPadding="0dp"
+      app:iconSize="50dp"
+      app:iconTint="#FFFFFF"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.095"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/mypostbtn3"
+      android:layout_width="98dp"
+      android:layout_height="69dp"
+      android:layout_marginBottom="32dp"
+      android:contentDescription="View My Posts"
+      app:icon="@drawable/user"
+      app:iconGravity="textStart"
+      app:iconPadding="0dp"
+      app:iconSize="50dp"
+      app:iconTint="#FFFFFF"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.907"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <ListView
+      android:id="@+id/lv_exploreposts"
+      android:layout_width="399dp"
+      android:layout_height="516dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+  <TextView
+      android:id="@+id/textView2"
+      android:layout_width="156dp"
+      android:layout_height="43dp"
+      android:layout_marginTop="16dp"
+      android:text="Explore Page"
+      android:textAlignment="center"
+      android:textSize="20sp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

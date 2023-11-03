@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPost">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/mypostbtn2"
+            android:layout_width="112dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="268dp"
+            android:contentDescription="View My Posts"
+            app:icon="@drawable/user"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="50dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.953"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_description" />
+
+        <Button
+            android:id="@+id/expbtn2"
+            android:layout_width="112dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="268dp"
+            android:contentDescription="Explore Other's Posts"
+            android:isScrollContainer="false"
+            android:pointerIcon="none"
+            app:icon="@android:drawable/ic_menu_compass"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="50dp"
+            app:iconTint="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_description" />
+
+        <Button
+            android:id="@+id/addbtn2"
+            android:layout_width="112dp"
+            android:layout_height="69dp"
+            android:layout_marginTop="100dp"
+            android:contentDescription="Add A New Post"
+            app:icon="@android:drawable/ic_menu_add"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="50dp"
+            app:layout_constraintEnd_toStartOf="@+id/mypostbtn2"
+            app:layout_constraintHorizontal_bias="0.294"
+            app:layout_constraintStart_toEndOf="@+id/expbtn2"
+            app:layout_constraintTop_toBottomOf="@+id/insertbtn" />
+
+        <TextView
+        android:id="@+id/img_url"
+        android:layout_width="214dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="72dp"
+        android:ems="10"
+        android:hint="Enter Image Url"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Image Url"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck"
+        tools:layout_editor_absoluteY="285dp" />
+
+        <EditText
+            android:id="@+id/user_description"
+            android:layout_width="233dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="First, preheat the oven to 240 degrees...."
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.241"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="Writer your recipes here:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <Button
+            android:id="@+id/insertbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="120dp"
+            android:onClick="onPostButtonClick"
+            android:text="Post"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_description" />
+
+        <Button
+            android:id="@+id/picker"
+            android:layout_width="97dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="232dp"
+            android:onClick="onImagePickerButtonClick"
+            android:text="Choose Image"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.949"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="107dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="68dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/myUserID"
+            android:layout_width="70dp"
+            android:layout_height="23dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="140dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addbtn2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

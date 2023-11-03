@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/mypostbtn"
+        android:layout_width="0dp"
+        android:layout_height="69dp"
+        android:layout_marginEnd="30dp"
+        android:contentDescription="View My Posts"
+        app:icon="@drawable/user"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="50dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addbtn" />
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="LogOut"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/myUsername"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <Button
+        android:id="@+id/expbtn"
+        android:layout_width="0dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="9dp"
+        android:contentDescription="Explore Other's Posts"
+        android:isScrollContainer="false"
+        android:pointerIcon="none"
+        app:icon="@android:drawable/ic_menu_compass"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="50dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addbtn"
+        app:layout_constraintEnd_toStartOf="@+id/addbtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addbtn"
+        android:layout_width="0dp"
+        android:layout_height="69dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="28dp"
+        android:contentDescription="Add A New Post"
+        app:icon="@android:drawable/ic_menu_add"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mypostbtn"
+        app:layout_constraintStart_toEndOf="@+id/expbtn" />
+
+    <TextView
+        android:id="@+id/myUsername"
+        android:layout_width="159dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/lv_myPosts"
+        android:layout_width="401dp"
+        android:layout_height="513dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myUsername" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
