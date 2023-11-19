@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -59,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
         profile = findViewById(R.id.mypostbtn);
         myUsername = findViewById(R.id.myUsername);
 
-        myUsername.setText(name);
-
-        username=myUsername.getText().toString();
+        myUsername.setText("My Profile");
 
 
 
-        List<userPosts> data = dataBaseHelper.getPosts(username);
+
+
+        List<userPosts> data = dataBaseHelper.getPosts(name);
         customAdapter = new userPostsAdapter(this, data, dataBaseHelper);
 
         lv_myPostsList.setAdapter(customAdapter);
@@ -221,16 +222,21 @@ class userPosts
         Button buttonEdit = view.findViewById(R.id.editbtn);
         Button buttonDelete = view.findViewById(R.id.deletebtn);
         Button buttonSave = view.findViewById(R.id.savbtn);
+        TextView mylikescount=view.findViewById(R.id.myLikesCount);
         Uri myImgUri;
         String uriString;
 
         userPosts item = data.get(position);
+
+        int rows=getRowCount(item.getId());
+
 
 
 
 
 
         desc.setText(item.getDesc());
+        mylikescount.setText(rows+" likes");
         timestamp.setText(item.getTimestamp());
          uriString = item.getImg_url();
          myImgUri=Uri.parse(uriString);
@@ -283,6 +289,21 @@ class userPosts
 
         return view;
     }
+     public int getRowCount(int picId) {
+         SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+
+         String countQuery = "SELECT COUNT(*) FROM " + DatabaseHelper.TABLE_LIKES +
+                 " WHERE "+DatabaseHelper.COLUMN_PICID +"="+picId;
+
+         Cursor cursor = db.rawQuery(countQuery, null);
+
+         cursor.moveToFirst();
+
+         int rowCount = cursor.getInt(0);
+
+         cursor.close();
+         return rowCount;
+     }
 }
 
 

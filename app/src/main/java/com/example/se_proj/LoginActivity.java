@@ -65,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         } else {
             // Login failed
-            Toast.makeText(LoginActivity.this,"Login failed. Please check your email and password",Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this,"Login failed. Please check your username and password",Toast.LENGTH_SHORT).show();
         }
     }
 }

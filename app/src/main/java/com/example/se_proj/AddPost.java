@@ -28,7 +28,7 @@ public class AddPost extends AppCompatActivity {
 
     Button exp_btn;
 
-    TextView username;
+
     TextView img_url;
     EditText user_desc;
 
@@ -46,10 +46,9 @@ public class AddPost extends AppCompatActivity {
 
         profile = findViewById(R.id.mypostbtn2);
         exp_btn = findViewById(R.id.expbtn2);
-        username = findViewById(R.id.myUserID);
 
 
-username.setText(name);
+
 
         exp_btn.setOnClickListener(v ->
 
@@ -81,11 +80,12 @@ username.setText(name);
             user_desc = findViewById(R.id.user_description);
 
 
-
+            SharedPreferences prefs = getSharedPreferences("com.example.se_proj", Context.MODE_PRIVATE);
+            String name = prefs.getString("name", "");
 
             String imageUrl = img_url.getText().toString();
             String description = user_desc.getText().toString();
-            String myUsername = username.getText().toString();
+            String myUsername = name;
 
             // Insert data into the database
             DatabaseHelper dbHelper = new DatabaseHelper(this);

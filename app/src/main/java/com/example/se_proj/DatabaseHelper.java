@@ -27,6 +27,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_EMAIL = "email";
 
+
+    public static final String TABLE_LIKES = "Likes";
+    public static final String COLUMN_USERLIKES = "username";
+    public static final String COLUMN_PICID = "picture_id";
+
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -46,8 +52,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_USERNAME + " TEXT, " +
                 COLUMN_PASSWORD + " TEXT, " +
-                COLUMN_EMAIL + " TEXT)";
+                COLUMN_EMAIL + " TEXT," +
+                "FOREIGN KEY ("+COLUMN_USERNAME+") REFERENCES "+TABLE_POSTS+"("+COLUMN_USER_ID+"))";
         db.execSQL(createTableUsers);
+
+
+        String createTableLikes = "CREATE TABLE " + TABLE_LIKES + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_USERLIKES + " TEXT, " +
+                COLUMN_PICID + " INTEGER, " +
+               " FOREIGN KEY ("+COLUMN_PICID+") REFERENCES "+TABLE_POSTS+"("+COLUMN_ID+"))";
+        db.execSQL(createTableLikes);
     }
 
     @Override

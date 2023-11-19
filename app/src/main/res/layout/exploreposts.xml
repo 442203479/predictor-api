@@ -23,16 +23,29 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-       android:layout_margin="10dp"
-        android:textOff=""
-        android:textOn=""
-        android:background="@drawable/toggle_selector"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
-         />
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/toggle_selector"
+            android:textOff=""
+            android:textOn=""
+
+            />
+
+        <TextView
+            android:id="@+id/likesCount"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/description2"

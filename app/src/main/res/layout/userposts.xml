@@ -18,6 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/myLikesCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
@@ -36,18 +42,21 @@
         android:id="@+id/editbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FE8869"
         android:text="Edit" />
 
     <Button
         android:id="@+id/deletebtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FE8869"
         android:text="Delete" />
 
     <Button
         android:id="@+id/savbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FE8869"
         android:text="Save"
         android:visibility="invisible" />
 
