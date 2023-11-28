@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/mypostbtn"
@@ -35,7 +36,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/myUsername"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.137" />
 
     <Button
         android:id="@+id/expbtn"
@@ -75,23 +76,25 @@
 
     <TextView
         android:id="@+id/myUsername"
-        android:layout_width="159dp"
-        android:layout_height="35dp"
+        android:layout_width="235dp"
+        android:layout_height="84dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/khand_light"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textColor="#FF5722"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lv_myPosts"
-        android:layout_width="401dp"
-        android:layout_height="513dp"
+        android:layout_width="404dp"
+        android:layout_height="403dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="112dp"
+        android:background="@color/background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myUsername"
-        android:background="@color/background"/>
+        app:layout_constraintTop_toBottomOf="@+id/myUsername" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

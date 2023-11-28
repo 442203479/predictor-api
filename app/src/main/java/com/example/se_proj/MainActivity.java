@@ -1,9 +1,11 @@
 //Profile Page
 package com.example.se_proj;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         profile = findViewById(R.id.mypostbtn);
         myUsername = findViewById(R.id.myUsername);
 
-        myUsername.setText("My Profile");
+        myUsername.setText("Welcome back, "+name+"!");
 
 
 
@@ -255,18 +257,36 @@ class userPosts
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String queryString = "DELETE FROM " + DatabaseHelper.TABLE_POSTS +
-                        " WHERE " + DatabaseHelper.COLUMN_ID + " = " + item.getId();
-                db = dataBaseHelper.getWritableDatabase();
-                db.execSQL(queryString);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Confirm Delete");
+                builder.setMessage("Are you sure you want to delete this post?");
 
-                data.remove(position);
-                notifyDataSetChanged();
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked "Yes," proceed with the deletion
+                        String queryString = "DELETE FROM " + DatabaseHelper.TABLE_POSTS +
+                                " WHERE " + DatabaseHelper.COLUMN_ID + " = " + item.getId();
+                        db = dataBaseHelper.getWritableDatabase();
+                        db.execSQL(queryString);
 
+                        data.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User clicked "No," do nothing
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
-
-
         });
+
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override

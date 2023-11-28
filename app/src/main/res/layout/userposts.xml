@@ -7,7 +7,6 @@
     android:layout_weight="1"
     android:orientation="vertical">
 
-
     <TextView
         android:id="@+id/timestamp2"
         android:layout_width="match_parent"
@@ -22,6 +21,7 @@
         android:id="@+id/myLikesCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/khand_light"
         android:text="TextView" />
 
     <EditText
@@ -29,11 +29,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:breakStrategy="simple"
-        android:lines="5"
         android:ems="10"
         android:enabled="false"
+        android:fontFamily="@font/khand_light"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        android:lines="5"
         android:minHeight="48dp"
         android:scrollbars="vertical"
         tools:ignore="SpeakableTextPresentCheck" />

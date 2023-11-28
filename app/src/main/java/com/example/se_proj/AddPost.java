@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,49 +75,51 @@ public class AddPost extends AppCompatActivity {
 
 
     public void onPostButtonClick(View view) {
-        // Check if an image has been selected
+        // Check if an image has been selected and description is written
         if (selectedImageUri != null) {
             img_url = findViewById(R.id.img_url);
             user_desc = findViewById(R.id.user_description);
 
+            // Check if user_desc is not null before retrieving its text
+            if (!TextUtils.isEmpty(user_desc.getText().toString())) {
+                SharedPreferences prefs = getSharedPreferences("com.example.se_proj", Context.MODE_PRIVATE);
+                String name = prefs.getString("name", "");
 
-            SharedPreferences prefs = getSharedPreferences("com.example.se_proj", Context.MODE_PRIVATE);
-            String name = prefs.getString("name", "");
+                String imageUrl = img_url.getText().toString();
+                String description = user_desc.getText().toString();
+                String myUsername = name;
 
-            String imageUrl = img_url.getText().toString();
-            String description = user_desc.getText().toString();
-            String myUsername = name;
+                // Insert data into the database
+                DatabaseHelper dbHelper = new DatabaseHelper(this);
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
+                String date = sdf.format(new Date());
+                ContentValues values = new ContentValues();
+                values.put(DatabaseHelper.COLUMN_IMAGE_URL, imageUrl);
+                values.put(DatabaseHelper.COLUMN_DESCRIPTION, description);
+                values.put(DatabaseHelper.COLUMN_USER_ID, myUsername);
+                values.put(DatabaseHelper.COLUMN_TIMESTAMP, date);
 
-            // Insert data into the database
-            DatabaseHelper dbHelper = new DatabaseHelper(this);
-            SQLiteDatabase db = dbHelper.getWritableDatabase();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
-            String date = sdf.format(new Date());
-            ContentValues values = new ContentValues();
-            values.put(DatabaseHelper.COLUMN_IMAGE_URL, imageUrl);
-            values.put(DatabaseHelper.COLUMN_DESCRIPTION, description);
-            values.put(DatabaseHelper.COLUMN_USER_ID, myUsername);
-            values.put(DatabaseHelper.COLUMN_TIMESTAMP, date);
+                long newRowId = db.insert(DatabaseHelper.TABLE_POSTS, null, values);
 
-            long newRowId = db.insert(DatabaseHelper.TABLE_POSTS, null, values);
+                db.close();
 
-            db.close();
+                // Provide user feedback, such as a success message
+                Toast.makeText(this, "Post uploaded successfully!", Toast.LENGTH_SHORT).show();
 
-            // Provide user feedback, such as a success message
-            Toast.makeText(this, "Post uploaded successfully!", Toast.LENGTH_SHORT).show();
-
-
-            //after posting, redirect user to their profile to see the new post
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-
-
-
+                //after posting, redirect user to their profile to see the new post
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            } else {
+                // Inform the user that the description is null
+                Toast.makeText(this, "You must add a description.", Toast.LENGTH_SHORT).show();
+            }
         } else {
             // Inform the user to select an image before posting
-            Toast.makeText(this, "Please select an image before posting.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You must upload a picture.", Toast.LENGTH_SHORT).show();
         }
     }
+
     public void onImagePickerButtonClick(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");

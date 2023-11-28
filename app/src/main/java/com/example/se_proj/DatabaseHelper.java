@@ -41,27 +41,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTablePosts = "CREATE TABLE " + TABLE_POSTS + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_IMAGE_URL + " TEXT, " +
-                COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_USER_ID + " TEXT , " +
-                COLUMN_TIMESTAMP + " INTEGER" +
+                COLUMN_IMAGE_URL + " TEXT NOT NULL, " +
+                COLUMN_DESCRIPTION + " TEXT NOT NULL, " +
+                COLUMN_USER_ID + " TEXT NOT NULL, " +
+                COLUMN_TIMESTAMP + " INTEGER NOT NULL" +
                 ")";
         db.execSQL(createTablePosts);
 
         String createTableUsers = "CREATE TABLE " + TABLE_NAME + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_USERNAME + " TEXT, " +
-                COLUMN_PASSWORD + " TEXT, " +
-                COLUMN_EMAIL + " TEXT," +
+                COLUMN_USERNAME + " TEXT NOT NULL, " +
+                COLUMN_PASSWORD + " TEXT NOT NULL, " +
+                COLUMN_EMAIL + " TEXT NOT NULL," +
                 "FOREIGN KEY ("+COLUMN_USERNAME+") REFERENCES "+TABLE_POSTS+"("+COLUMN_USER_ID+"))";
         db.execSQL(createTableUsers);
 
 
         String createTableLikes = "CREATE TABLE " + TABLE_LIKES + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_USERLIKES + " TEXT, " +
-                COLUMN_PICID + " INTEGER, " +
-               " FOREIGN KEY ("+COLUMN_PICID+") REFERENCES "+TABLE_POSTS+"("+COLUMN_ID+"))";
+                COLUMN_USERLIKES + " TEXT NOT NULL, " +
+                COLUMN_PICID + " INTEGER NOT NULL, " +
+               " FOREIGN KEY ("+COLUMN_USERLIKES+") REFERENCES "+TABLE_POSTS+"("+COLUMN_USER_ID+")," +
+                " FOREIGN KEY ("+COLUMN_PICID+") REFERENCES "+TABLE_POSTS+"("+COLUMN_ID+"))";
         db.execSQL(createTableLikes);
     }
 
@@ -72,6 +73,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String dropTableUsers = "DROP TABLE IF EXISTS " + TABLE_NAME;
         db.execSQL(dropTableUsers);
+
+        String dropTableLikes = "DROP TABLE IF EXISTS " + TABLE_LIKES;
+        db.execSQL(dropTableLikes);
 
         onCreate(db);
     }
@@ -131,13 +135,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean insertUser(String username, String password, String email) {
         SQLiteDatabase db = this.getWritableDatabase();
+
+        // Check if the username or email already exists in the database
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " +
+                COLUMN_USERNAME + " = ? OR " + COLUMN_EMAIL + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username, email});
+        if (cursor.getCount() > 0) {
+            // Username or email already exists, return false to indicate registration failure
+            cursor.close();
+            db.close();
+            return false;
+        }
+        cursor.close();
+
+        // Insert the new user into the database
         ContentValues values = new ContentValues();
         values.put(COLUMN_USERNAME, username);
         values.put(COLUMN_PASSWORD, password);
         values.put(COLUMN_EMAIL, email);
         long result = db.insert(TABLE_NAME, null, values);
-        userPosts setUsername=new userPosts();
-        setUsername.setUserID(username);
+
+        db.close();
+
+        // Return true if the user was successfully inserted into the database
         return result != -1;
     }
 
